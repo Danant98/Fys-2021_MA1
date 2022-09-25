@@ -6,8 +6,13 @@ Main file for assignment 1 in Fys-2021 Machine Learning.
 # Import libraries and modules
 import numpy as np
 import seaborn as sns
-import os
-import pandas as pd
+import os, LR
+import pandas as pd 
+
+# Opening data files and transforming to numpy arrays
+spotify_data = np.asarray(pd.read_csv(os.path.join("resources", "spotify_data.csv")))
+
+
 
 
 
