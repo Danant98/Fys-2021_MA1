@@ -9,7 +9,7 @@ class LinearRegression:
     def __init__(self, X:np.ndarray, r:np.ndarray):
         """
         Input:
-            X: np.ndarray shape(n,p), datamatrix for traningdata
+            X: np.ndarray shape(n,p-1) p original length of array, datamatrix for traningdata
             r: np.ndarray shape(n,), continuous data for response
         
         Output: 
@@ -28,11 +28,11 @@ class LinearRegression:
         """
         Method for calculating the linear regression method
         """
+        # Using the best fit model to calculate the linear regression 
         try:
-            # Calling the best model for f(x)
             BP = self.__bestmodel()
             return np.dot(self._X, BP)
-        
+        # Caching errors if method does not work
         except Exception as e:
             print("OPS! Something went wrong. Check {} for details.".format(str(e)))
 
