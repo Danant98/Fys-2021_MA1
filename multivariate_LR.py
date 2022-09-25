@@ -8,8 +8,8 @@ import numpy as np
 class LinearRegression:
 
     def __init__(self, x:np.ndarray):
-        # Treningset
-        self.x = x
+        # Inputed 
+        self.r = x
 
 
 
