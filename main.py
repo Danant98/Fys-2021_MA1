@@ -8,12 +8,6 @@ import numpy as np
 import seaborn as sns
 import os
 
-class LinearRegression:
-
-    def __init__(self, tset):
-        self.tset = tset
-
-
 
 
 
