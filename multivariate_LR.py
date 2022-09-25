@@ -8,7 +8,7 @@ import numpy as np
 class LinearRegression:
 
     def __init__(self, x:np.ndarray):
-        # D
+        # Treningset
         self.x = x
 
 
