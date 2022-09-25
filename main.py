@@ -6,7 +6,7 @@ Main file for assignment 1 in Fys-2021 Machine Learning.
 # Import libraries and modules
 import numpy as np
 import seaborn as sns
-
+import os
 
 class LinearRegression:
 
