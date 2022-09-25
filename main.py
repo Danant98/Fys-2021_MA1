@@ -7,7 +7,7 @@ Main file for assignment 1 in Fys-2021 Machine Learning.
 import numpy as np
 import seaborn as sns
 import os
-
+import pandas as pd
 
 
 
