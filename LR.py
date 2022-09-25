@@ -16,7 +16,6 @@ class LinearRegression:
         Output: 
             np.ndarray shape(n,), best fit data for inputed data response r
         """
-        
         self._X = np.hstack((np.ones((np.shape(X)[0], 1)), X))
         self._r = r
 
