@@ -1,6 +1,9 @@
+#!/usr/bin/env python
 """
 File containg the multivaritate linear regression class
 """
+__author__ = 'Daniel Elisabethsønn Antonsen, UiT Artic university'
+
 # Import libraries and modules
 import numpy as np
 
@@ -18,20 +21,20 @@ class LinearRegression:
         self._X = np.hstack((np.ones((np.shape(X)[0], 1)), X))
         self._r = r
 
-    def __bestmodel(self):
+    def __bestmodel(self, X, r):
         """
         Method for calculating the best fit model W
         """
-        return np.dot(np.dot(np.linalg.inv(np.dot(self._X.T, self._X)), self._X.T), self._r)
+        return np.dot(np.dot(np.linalg.inv(np.dot(X.T, X)), X.T), r)
     
-    def linear_regression(self):
+    def linear_regression(self, X, r):
         """
         Method for calculating the linear regression using best model
         """
         # Using the best fit model to calculate the linear regression 
         try:
-            BP = self.__bestmodel()
-            return np.dot(self._X, BP)
+            BP = self.__bestmodel(X, r)
+            return np.dot(X, BP)
         # Caching errors if method does not work
         except Exception as e:
             print("OPS! Something went wrong. Check {}\n for details.".format(str(e)))
@@ -40,6 +43,15 @@ class LinearRegression:
         """
         Method <>
         """
-        pass
+        
+        for i in range(0, np.shape(self._X)[0]):
+            _X = self._X[i, :]
+            _Rtrain = self._r[i, :]
+            
+
+
+
+        
+        
 
 

@@ -1,16 +1,20 @@
+#!/usr/bin/env python
 """
 Main file for assignment 1 in Fys-2021 Machine Learning. 
-
-@author: Daniel Elisabethsønn Antonsen, UiT Arctic university.
 """
+__author__ = 'Daniel Elisabethsønn Antonsen, UiT Artic university'
+
 # Import libraries and modules
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os, LR 
+import pandas as pd
+from sklearn.model_selection import LeaveOneOut
+
 
 # Opening data files and transforming to numpy arrays
-spotify_data = np.genfromtxt(os.path.join("resources", "spotify_data.csv"), delimiter=",")
+spotify_data = pd.read_csv(os.path.join("resources", "spotify_data.csv"), delimiter=",").to_numpy()
 # Trening dataset for spotify dataset, using the N-1 first values 
 rtrening_1 = spotify_data[:np.shape(spotify_data)[0] - 1, 0]
 xtrening_1 = spotify_data[:np.shape(spotify_data)[0] - 1, 1:]
