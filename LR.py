@@ -24,7 +24,7 @@ class LinearRegression:
         """
         return np.dot(np.dot(np.linalg.inv(np.dot(X.T, X)), X.T), r)
     
-    def linear_regression(self, BM:np.ndarray, X:np.ndarray):
+    def _linear_regression(self, BM:np.ndarray, X:np.ndarray):
         """
         Method for calculating the linear regression using best model.
 
@@ -50,13 +50,13 @@ class LinearRegression:
         # Holding the values for validation data
         _rhat = np.zeros(np.shape(self._r))
         for i in range(0, np.shape(self._X)[0]):
-            _Xtest = self._X[i, :]
-            _Rtest = self._r[i, :]
-            _Xtrain = np.delete(self._X, i, 0)
-            _Rtrain = np.delete(self._r, i, 0)
+            Xtest = self._X[i, :]
+            Rtest = self._r[i, :]
+            Xtrain = np.delete(self._X, i, 0)
+            Rtrain = np.delete(self._r, i, 0)
 
-            _BM = self.__bestmodel(_Xtrain, _Rtrain)
-            _rhat[i] = self.linear_regression(_BM, _Xtest)
+            BM = self.__bestmodel(Xtrain, Rtrain)
+            _rhat[i] = self._linear_regression(BM, Xtest)
         
         return _rhat
 
