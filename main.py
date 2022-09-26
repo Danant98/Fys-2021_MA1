@@ -8,19 +8,24 @@ __author__ = 'Daniel Elisabethsønn Antonsen, UiT Artic university'
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import os, LR 
+import os
 import pandas as pd
-from sklearn.model_selection import LeaveOneOut
+from LR import LinearRegression
 
 
 # Opening data files and transforming to numpy arrays
 spotify_data = pd.read_csv(os.path.join("resources", "spotify_data.csv"), delimiter=",").to_numpy()
-X1 = spotify_data[:, 0]
-R1 = spotify_data[:, 1:]
+R1 = spotify_data[:, 0]
+X1 = spotify_data[:, 1:]
 
-rhat_1 = LR.LinearRegression(X1, R1).LeaveOneOut()
-print(rhat_1)
+# Estimated responses (predictions)
+rhat_1 = LinearRegression(X1, R1).LeaveOneOut()
 
+indexes = np.arange(0, np.shape(spotify_data)[0], 1)
+
+plt.plot(indexes, rhat_1)
+plt.plot(indexes, R1)
+plt.show()
 
 if __name__ == '__main__':
     pass
