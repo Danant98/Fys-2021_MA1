@@ -24,12 +24,19 @@ rhat_1 = LinearRegression(X1, R1).LeaveOneOut()
 # Residuals or errors
 error_1 = R1 - rhat_1
 
-# 
+# Array with index numbers for all songs in dataset
 indexes = np.arange(0, np.shape(spotify_data)[0], 1)
 
-plt.scatter(indexes, rhat_1)
-plt.scatter(indexes, R1)
-plt.show()
+# Ploting problem 1
+fig, ax = plt.subplots(1, 2)
+ax[0].scatter(indexes, rhat_1, label=r"$\hat{r}$")
+ax[0].scatter(indexes, R1, label=r"$r$")
+ax[0].set_xlabel("Song by index")
+ax[0].set_ylabel("Popularity of song")
+ax[0].legend(loc="lower left")
+
+ax[1].hist(error_1, indexes)
+
 
 if __name__ == '__main__':
-    pass
+    plt.show()
