@@ -20,7 +20,7 @@ class LinearRegression:
 
     def __bestmodel(self):
         """
-        Method for calculating the best fit model (g(x|theta))
+        Method for calculating the best fit model W
         """
         return np.dot(np.dot(np.linalg.inv(np.dot(self._X.T, self._X)), self._X.T), self._r)
     
@@ -35,5 +35,11 @@ class LinearRegression:
         # Caching errors if method does not work
         except Exception as e:
             print("OPS! Something went wrong. Check {}\n for details.".format(str(e)))
+        
+    def LeaveOneOut(self):
+        """
+        Method <>
+        """
+        pass
 
 

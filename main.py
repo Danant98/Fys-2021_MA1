@@ -19,7 +19,7 @@ rtest_1 = spotify_data[-1, 0]
 xtest_1 = spotify_data[-1, 1:]
 # Running linear regression for spotify dataset
 rhat_1 = LR.LinearRegression(xtrening_1, rtrening_1)
-
+# Array containing the indexnumber of songs
 indexnumber = np.arange(0, np.shape(spotify_data)[0], 1)
 
 
