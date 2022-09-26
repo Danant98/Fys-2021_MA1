@@ -21,10 +21,14 @@ X1 = spotify_data[:, 1:]
 # Estimated responses (predictions)
 rhat_1 = LinearRegression(X1, R1).LeaveOneOut()
 
+# Residuals or errors
+error_1 = R1 - rhat_1
+
+# 
 indexes = np.arange(0, np.shape(spotify_data)[0], 1)
 
-plt.plot(indexes, rhat_1)
-plt.plot(indexes, R1)
+plt.scatter(indexes, rhat_1)
+plt.scatter(indexes, R1)
 plt.show()
 
 if __name__ == '__main__':
