@@ -5,6 +5,7 @@ Main file for assignment 1 in Fys-2021 Machine Learning.
 """
 # Import libraries and modules
 import numpy as np
+import matplotlib.pyplot as plt
 import seaborn as sns
 import os, LR 
 
@@ -19,6 +20,7 @@ xtest_1 = spotify_data[-1, 1:]
 # Running linear regression for spotify dataset
 rhat_1 = LR.LinearRegression(xtrening_1, rtrening_1)
 
+indexnumber = np.arange(0, np.shape(spotify_data)[0], 1)
 
 
 if __name__ == '__main__':
