@@ -10,9 +10,15 @@ import os, LR
 import pandas as pd 
 
 # Opening data files and transforming to numpy arrays
-spotify_data = np.asarray(pd.read_csv(os.path.join("resources", "spotify_data.csv")))
-
-
+spotify_data = np.genfromtxt(os.path.join("resources", "spotify_data.csv"), delimiter=",")
+# Trening dataset for spotify dataset, using the N-1 first values 
+rtrening_1 = spotify_data[:np.shape(spotify_data)[0] - 1, 0]
+xtrening_1 = spotify_data[:np.shape(spotify_data)[0] - 1, 1:]
+# Test dataset using cross-validation, dataset contains the N element from original dataset 
+rtest_1 = spotify_data[-1, 0]
+xtest_1 = spotify_data[-1, 1:]
+# Running linear regression for spotify dataset
+rhat_1 = LR.LinearRegression(xtrening_1, rtrening_1)
 
 
 
