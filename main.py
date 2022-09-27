@@ -17,7 +17,7 @@ spotify_data = pd.read_csv(os.path.join("resources", "spotify_data.csv"), delimi
 R1 = spotify_data[:, 0]
 X1 = spotify_data[:, 1:]
 
-
+# 
 R1_2 = R1[R1 > 80]
 X1_2 = X1[R1 > 80]
 
@@ -44,8 +44,8 @@ Rsqared2 = 1 - (SSRES2 / SSRTOT2)
 print("Root-mean-squere error is given as {0:.6f} \nR^2 is given as {1:.6f}".format(RMSE, Rsqared))
 
 # Array with index numbers for all songs in dataset
-indexes = np.arange(0, np.shape(spotify_data)[0], 1)
-indexes_1 = np.arange(0, np.shape(X1_2)[0], 1)
+indexes = np.arange(0, np.shape(R1)[0], 1)
+indexes_1 = np.arange(0, np.shape(R1_2)[0], 1)
 
 # Ploting problem 1
 fig, ax = plt.subplots(1, 2, tight_layout=True)
@@ -58,7 +58,8 @@ ax[0].set_title("Popularity of songs by index")
 ax[0].legend(loc="lower left")
 
 ax[1].hist(error_1, color="red")
-ax[1].set_title("Error/residuals")
+ax[1].set_xlabel("Error or residuals")
+ax[1].set_title("Error/residuals for songs")
 
 # Ploting problem 1 with all values below 80 cut out
 fig1, ax1 = plt.subplots(1, 2, tight_layout=True)
@@ -67,10 +68,13 @@ ax1[0].scatter(indexes_1, R1_2, label=r"$r$")
 ax1[0].vlines(indexes_1, rhat_12, R1_2, color="green")
 ax1[0].set_xlabel("Song by index")
 ax1[0].set_ylabel("Popularity of song")
-ax1[0].set_title("Popularity of songs by index without values below 80")
+ax1[0].set_title("Popularity of songs by index for songs with popularity above 80")
 ax1[0].legend(loc="lower left")
 
 ax1[1].hist(error_12, color="red")
+ax1[1].set_xlabel("Error or residuals")
+ax1[1].set_title("Error/residuals for songs with popularity above 80")
+
 
 print("Root-mean-squere error without values below 80 is given as {0:.6f} \nR^2 without values below 80 is given as {1:.6f}".format(RMSE2, Rsqared2))
 
