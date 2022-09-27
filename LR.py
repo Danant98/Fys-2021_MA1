@@ -38,17 +38,18 @@ class LinearRegression:
             return np.dot(X, BM)
         # Caching errors if method does not work
         except Exception as e:
-            print("OPS! Something went wrong. Check {}\n for details.".format(str(e)))
+            print("OPS! Something went wrong. Check {0:}\n for details.".format(str(e)))
         
     def LeaveOneOut(self):
         """
-        Method for implementing cross-validation leave one out method. 
+        Method for implementing leave-one-out cross-validation. 
 
         Output: 
             rhat: np.ndarray (N,), returning array containg 
         """
         # Holding the values for validation data
         _rhat = np.zeros(np.shape(self._r))
+        residuals = np.zeros(np.shape(self._r))
         for i in range(0, np.shape(self._X)[0]):
             Xtest = self._X[i, :]
             Rtest = self._r[i]
@@ -57,6 +58,8 @@ class LinearRegression:
 
             BM = self.__bestmodel(Xtrain, Rtrain)
             _rhat[i] = self.__linear_regression(BM, Xtest)
+            residuals[i] = Rtest - _rhat[i]
+
         
-        return _rhat
+        return _rhat, residuals
 
