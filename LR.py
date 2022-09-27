@@ -59,7 +59,6 @@ class LinearRegression:
             BM = self.__bestmodel(Xtrain, Rtrain)
             _rhat[i] = self.__linear_regression(BM, Xtest)
             residuals[i] = Rtest - _rhat[i]
-
         
         return _rhat, residuals
 
