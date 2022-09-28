@@ -104,10 +104,10 @@ def split_data(data:np.ndarray):
     return X1, X2, labels
 
 # Splitting dataset into 2 
-X1, X2, labels  = split_data(datatrain)
+X12, X22, labels  = split_data(datatrain)
 
 # Run BayesClassifier class
-bayes = BayesClassifier(X1, X2)
+bayes = BayesClassifier(X12, X22, labels)
 
 # Calculating beta, mean and variance
 beta = bayes.beta_hat()
@@ -115,14 +115,13 @@ mu = bayes.mean()
 sigma_2 = bayes.variance()
 
 # Calculating the prior probabilities for C0 and C1
-PC0 = len(X1) / len(labels)
-PC1 = len(X2) / len(labels)
+PC0, PC1 = bayes.prior_possibilities()
 #print("P(C0) = " + str(PC0))
 #print("P(C1) = " + str(PC1))
 
 # Defining 
-t1 = np.linspace(0, 1, len(X1))
-t2 = np.linspace(0, 1, len(X2))
+t1 = np.linspace(0, 1, len(X12))
+t2 = np.linspace(0, 1, len(X22))
 
 # Calling normal and gamma distribution functions
 g = bayes.Gamma(t1) 
@@ -141,4 +140,5 @@ plt.legend()
 
 
 if __name__ == '__main__':
-    plt.show()
+    #plt.show()
+    pass

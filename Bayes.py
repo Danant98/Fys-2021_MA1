@@ -9,15 +9,17 @@ from math import gamma, pow
 
 class BayesClassifier:
     
-    def __init__(self, X1:np.ndarray, X2:np.ndarray, alpha:float=9):
+    def __init__(self, X1:np.ndarray, X2:np.ndarray, labels:np.ndarray ,alpha:float=9):
         """
         Input:
             X1: np.ndarray, values of class 1
             X2: np.ndarray, values of class 2
+            labels: np.ndarray, labels for total amount of classes
             alpha: float, 
         """
         self._X1 = X1
         self._X2 = X2
+        self._labels = labels
         self._alpha = alpha 
 
     def beta_hat(self):
@@ -56,9 +58,13 @@ class BayesClassifier:
         """
         return (1 / (np.sqrt(2 * np.pi) * np.sqrt(self.variance()))) * np.exp(-(np.square(X - self.mean()) / (2 * self.variance())))
 
-
-
-
+    def prior_possibilities(self):
+        """
+        Method for calculating the prior probabilities
+        """
+        PC0 = len(self._X1) / len(self._labels)
+        PC1 = len(self._X2) / len(self._labels)
+        return PC0, PC1
 
 
 
