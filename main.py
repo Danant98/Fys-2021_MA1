@@ -125,11 +125,11 @@ n = bayes.Normal(t2)
 # Ploting the data from
 #fig2, ax2 = plt.subplots(2, 1, tight_layout=True)
 sns.histplot(datatrain[:, 1], bins=50, stat="probability")
-plt.scatter(t1, g/100, color="green")
-plt.scatter(t2, n/100, color="red")
-plt.xlabel("")
-
-
+plt.scatter(t1, g/100, color="green", label="Gamma distribution")
+plt.scatter(t2, n/100, color="red", label="Normal distribution")
+plt.xlabel("x")
+plt.title("Plot of probability distributions")
+plt.legend()
 
 
 
