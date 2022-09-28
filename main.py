@@ -60,7 +60,7 @@ ax[0].set_ylabel("Popularity of song")
 ax[0].set_title("Popularity of songs by index")
 ax[0].legend(loc="lower left")
 
-ax[1].hist(error_1, color="red")
+sns.histplot(error_1, ax=ax[1], color="red")
 ax[1].set_xlabel("Error or residuals")
 ax[1].set_title("Error/residuals for songs")
 
@@ -74,39 +74,40 @@ ax1[0].set_ylabel("Popularity of song")
 ax1[0].set_title("Popularity of songs by index for songs with popularity above 80")
 ax1[0].legend(loc="lower left")
 
-ax1[1].hist(error_12, color="red")
+sns.histplot(error_12, ax=ax1[1], color="red")
 ax1[1].set_xlabel("Error or residuals")
 ax1[1].set_title("Error/residuals for songs with popularity above 80")
 
 #print("Root-mean-squere error without values below 80 is given as {0:.6f} \nR^2 without values below 80 is given as {1:.6f}".format(RMSE2, Rsqared2))
 """
-
 ### Problem 2
 
 # Opening data for problem 2
-dftrain = np.genfromtxt(os.path.join("resources", "optdigits-1d-train.csv"))
+datatrain = np.genfromtxt(os.path.join("resources", "optdigits-1d-train.csv"))
 
-def split_data(self):
-        """
-        Method for splitting the dataset into multiple classes 
-        """
-        _X1 = np.array([np.shape(self._data.shape[0], 1)])        
-        _X2 = np.array([np.shape(self._data.shape[0],)])
-        for i in range(0, np.shape(self._data)[1]):
-            if self._data[i, 0] == 0:
-                _X1[i] = self._data[i, 1]
-            elif self._data[i, 0] == 1:
-                _X2[i] = self._data[i, 1]
+def split_data(data:np.ndarray):
+    """
+    Function to split a single dataset into 2 classes
 
-        return _X1, _X2
+    Input: 
+        data:np.ndarray, original dataset
+        
+    Output: 
+        X1: np.ndarray, class 1 
+        X2: np.ndarray, class 2    
+    """
+    X = data[:, 1]
+    labels = data[:, 0]
+    X1 = X[labels > 0]
+    X2 = X[labels < 1]
 
-X1, X2 = BayesClassifier(dftrain).split_data()
-print(X1)
+    return X1, X2, labels
 
+# 
+X1, X2, labels  = split_data(datatrain)
 
-
-
-
+# 
+bayes = BayesClassifier(datatrain)
 
 
 if __name__ == '__main__':
