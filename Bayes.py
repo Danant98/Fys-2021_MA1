@@ -20,23 +20,27 @@ class BayesClassifier:
         self._X2 = X2
         self._alpha = alpha 
 
-    def beta_hat(self):
+    def beta_hat(self, X:np.ndarray):
         """
         Method for calculating the estimator for beta
-        """
-        return (1 / (self._alpha* len(self._X1))) * np.sum(self._X1)
 
-    def mean(self):
+        Input: 
+            X: np.ndarray, array constaining 
+
+        """
+        return (1 / (self._alpha* len(X))) * np.sum(X)
+
+    def mean(self, X:np.ndarray):
         """
         Method for calculating the estimator for the mean
         """
-        return (1 / len(self._X2)) * np.sum(self._X2)
+        return (1 / len(X)) * np.sum(X)
 
-    def variance(self):
+    def variance(self, X:np.ndarray):
         """
         Method for calculating the estimator for the variance 
         """
-        return (1 / len(self._X2)) * np.sum(np.square(self._X2 - self.mean()))
+        return (1 / len(X)) * np.sum(np.square(X - self.mean(X)))
 
     def Gamma(self, X:np.ndarray):
         """
@@ -45,7 +49,7 @@ class BayesClassifier:
         Input:
             X: np.ndarray, array constaing the x values
         """
-        return (1 / (self.beta_hat()**self._alpha * gamma(self._alpha))) * X**(self._alpha - 1) * np.exp(-X / self.beta_hat())
+        return (1 / (self.beta_hat(X)**self._alpha * gamma(self._alpha))) * X**(self._alpha - 1) * np.exp(-X / self.beta_hat(X))
 
     def Normal(self, X:np.ndarray):
         """
@@ -54,7 +58,7 @@ class BayesClassifier:
         Input: 
             X: np.ndarray, array constaing the x values
         """
-        return (1 / (np.sqrt(2 * np.pi) * self.variance())) * np.exp(-(np.square(X - self.mean()) / 2 * np.square(self.variance())))
+        return (1 / (np.sqrt(2 * np.pi) * self.variance(X))) * np.exp(-(np.square(X - self.mean(X)) / 2 * np.square(self.variance(X))))
 
 
 

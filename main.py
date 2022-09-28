@@ -110,9 +110,9 @@ X1, X2, labels  = split_data(datatrain)
 bayes = BayesClassifier(X1, X2)
 
 # Calculating beta, mean and variance
-beta = bayes.beta_hat()
-mu = bayes.mean()
-sigma_2 = bayes.variance()
+beta = bayes.beta_hat(X1)
+mu = bayes.mean(X2)
+sigma_2 = bayes.variance(X2)
 
 # 
 t = np.linspace(0, 1, len(datatrain[0]))
