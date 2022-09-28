@@ -114,7 +114,13 @@ beta = bayes.beta_hat()
 mu = bayes.mean()
 sigma_2 = bayes.variance()
 
-# 
+# Calculating the prior probabilities for C0 and C1
+PC0 = len(X1) / len(labels)
+PC1 = len(X2) / len(labels)
+#print("P(C0) = " + str(PC0))
+#print("P(C1) = " + str(PC1))
+
+# Defining 
 t1 = np.linspace(0, 1, len(X1))
 t2 = np.linspace(0, 1, len(X2))
 
