@@ -98,8 +98,8 @@ def split_data(data:np.ndarray):
     """
     X = data[:, 1]
     labels = data[:, 0]
-    X1 = X[labels > 0]
-    X2 = X[labels < 1]
+    X1 = X[labels < 1]
+    X2 = X[labels > 0]
 
     return X1, X2, labels
 
@@ -110,21 +110,24 @@ X1, X2, labels  = split_data(datatrain)
 bayes = BayesClassifier(X1, X2)
 
 # Calculating beta, mean and variance
-beta = bayes.beta_hat(X1)
-mu = bayes.mean(X2)
-sigma_2 = bayes.variance(X2)
+beta = bayes.beta_hat()
+mu = bayes.mean()
+sigma_2 = bayes.variance()
 
 # 
-t = np.linspace(0, 1, len(datatrain[0]))
+t1 = np.linspace(0, 1, len(X1))
+t2 = np.linspace(0, 1, len(X2))
 
-g = bayes.Gamma(t)
-
+# Calling normal and gamma distribution functions
+g = bayes.Gamma(t1) 
+n = bayes.Normal(t2)
 
 # Ploting the data from
-fig2, ax2 = plt.subplots(2, 1, tight_layout=True)
-sns.histplot(datatrain[:, 1], ax=ax2[0])
-plt.plot(t, g)
-
+#fig2, ax2 = plt.subplots(2, 1, tight_layout=True)
+sns.histplot(datatrain[:, 1], bins=50, stat="probability")
+plt.scatter(t1, g/100, color="green")
+plt.scatter(t2, n/100, color="red")
+plt.xlabel("")
 
 
 

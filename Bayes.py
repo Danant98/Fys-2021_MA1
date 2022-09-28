@@ -5,7 +5,7 @@ __author__ = 'Daniel Elisabethsønn Antonsen, UiT Artic university'
 
 # Import libraries and modules
 import numpy as np
-from math import gamma
+from math import gamma, pow
 
 class BayesClassifier:
     
@@ -20,45 +20,41 @@ class BayesClassifier:
         self._X2 = X2
         self._alpha = alpha 
 
-    def beta_hat(self, X:np.ndarray):
+    def beta_hat(self):
         """
         Method for calculating the estimator for beta
-
-        Input: 
-            X: np.ndarray, array constaining 
-
         """
-        return (1 / (self._alpha* len(X))) * np.sum(X)
+        return (1 / (self._alpha* len(self._X1))) * np.sum(self._X1)
 
-    def mean(self, X:np.ndarray):
+    def mean(self):
         """
         Method for calculating the estimator for the mean
         """
-        return (1 / len(X)) * np.sum(X)
+        return (1 / len(self._X2)) * np.sum(self._X2)
 
-    def variance(self, X:np.ndarray):
+    def variance(self):
         """
         Method for calculating the estimator for the variance 
         """
-        return (1 / len(X)) * np.sum(np.square(X - self.mean(X)))
+        return (1 / len(self._X2)) * np.sum(np.square(self._X2 - self.mean()))
 
     def Gamma(self, X:np.ndarray):
         """
         Method for calculating the gamma distribution
 
         Input:
-            X: np.ndarray, array constaing the x values
+            X: np.ndarray, array containg the x values
         """
-        return (1 / (self.beta_hat(X)**self._alpha * gamma(self._alpha))) * X**(self._alpha - 1) * np.exp(-X / self.beta_hat(X))
+        return (1 / (self.beta_hat()**(self._alpha) * gamma(self._alpha))) * (X**(self._alpha - 1)) * np.exp(-X / self.beta_hat())
 
     def Normal(self, X:np.ndarray):
         """
         Method for calculating the normal distribution 
 
         Input: 
-            X: np.ndarray, array constaing the x values
+            X: np.ndarray, array containg the x values
         """
-        return (1 / (np.sqrt(2 * np.pi) * self.variance(X))) * np.exp(-(np.square(X - self.mean(X)) / 2 * np.square(self.variance(X))))
+        return (1 / (np.sqrt(2 * np.pi) * np.sqrt(self.variance()))) * np.exp(-(np.square(X - self.mean()) / (2 * self.variance())))
 
 
 
