@@ -114,7 +114,13 @@ beta = bayes.beta_hat()
 mu = bayes.mean()
 sigma_2 = bayes.variance()
 
+# 
+t = np.linspace(0, 1, len(datatrain[0]))
 
+
+# Ploting the data from
+fig2, ax2 = plt.subplots(2, 1, tight_layout=True)
+sns.histplot(datatrain[:, 1], ax=ax2[0])
 
 
 
