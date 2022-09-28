@@ -41,7 +41,7 @@ Rsqared2 = 1 - (SSRES2 / SSRTOT2)
 
 
 # Printing the value for RMSE and R^2
-print("Root-mean-squere error is given as {0:.6f} \nR^2 is given as {1:.6f}".format(RMSE, Rsqared))
+#print("Root-mean-squere error is given as {0:.6f} \nR^2 is given as {1:.6f}".format(RMSE, Rsqared))
 
 # Array with index numbers for all songs in dataset
 indexes = np.arange(0, np.shape(R1)[0], 1)
@@ -75,7 +75,7 @@ ax1[1].hist(error_12, color="red")
 ax1[1].set_xlabel("Error or residuals")
 ax1[1].set_title("Error/residuals for songs with popularity above 80")
 
-print("Root-mean-squere error without values below 80 is given as {0:.6f} \nR^2 without values below 80 is given as {1:.6f}".format(RMSE2, Rsqared2))
+#print("Root-mean-squere error without values below 80 is given as {0:.6f} \nR^2 without values below 80 is given as {1:.6f}".format(RMSE2, Rsqared2))
 
 
 
