@@ -7,7 +7,6 @@ __author__ = 'Daniel Elisabethsønn Antonsen, UiT Artic university'
 import numpy as np
 
 
-
 class BayesClassifier:
 
     def __init__(self):
