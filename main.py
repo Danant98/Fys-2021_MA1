@@ -103,11 +103,25 @@ def split_data(data:np.ndarray):
 
     return X1, X2, labels
 
-# 
+# Splitting dataset into 2 
 X1, X2, labels  = split_data(datatrain)
 
-# 
-bayes = BayesClassifier(datatrain)
+# Run BayesClassifier class
+bayes = BayesClassifier(X1, X2)
+
+# Calculating beta, mean and variance
+beta = bayes.beta_hat()
+mu = bayes.mean()
+sigma_2 = bayes.variance()
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
