@@ -54,7 +54,7 @@ class BayesClassifier:
         Input: 
             X: np.ndarray, array constaing the x values
         """
-        return (1 / (np.sqrt(2 * np.pi) * self.variance())) * np.exp(-(np.square(self._X2 - self.mean()) / 2 * np.square(self.variance())))
+        return (1 / (np.sqrt(2 * np.pi) * self.variance())) * np.exp(-(np.square(X - self.mean()) / 2 * np.square(self.variance())))
 
 
 

@@ -117,12 +117,13 @@ sigma_2 = bayes.variance()
 # 
 t = np.linspace(0, 1, len(datatrain[0]))
 
+g = bayes.Gamma(t)
+
 
 # Ploting the data from
 fig2, ax2 = plt.subplots(2, 1, tight_layout=True)
 sns.histplot(datatrain[:, 1], ax=ax2[0])
-
-
+plt.plot(t, g)
 
 
 
