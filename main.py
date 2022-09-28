@@ -11,7 +11,10 @@ import seaborn as sns
 import os
 import pandas as pd
 from LR import LinearRegression
+from Bayes import BayesClassifier
 
+"""
+### Problem 1
 # Opening data files and transforming to numpy array
 spotify_data = pd.read_csv(os.path.join("resources", "spotify_data.csv"), delimiter=",").to_numpy()
 R1 = spotify_data[:, 0]
@@ -76,6 +79,33 @@ ax1[1].set_xlabel("Error or residuals")
 ax1[1].set_title("Error/residuals for songs with popularity above 80")
 
 #print("Root-mean-squere error without values below 80 is given as {0:.6f} \nR^2 without values below 80 is given as {1:.6f}".format(RMSE2, Rsqared2))
+"""
+
+### Problem 2
+
+# Opening data for problem 2
+dftrain = np.genfromtxt(os.path.join("resources", "optdigits-1d-train.csv"))
+
+def split_data(self):
+        """
+        Method for splitting the dataset into multiple classes 
+        """
+        _X1 = np.array([np.shape(self._data.shape[0], 1)])        
+        _X2 = np.array([np.shape(self._data.shape[0],)])
+        for i in range(0, np.shape(self._data)[1]):
+            if self._data[i, 0] == 0:
+                _X1[i] = self._data[i, 1]
+            elif self._data[i, 0] == 1:
+                _X2[i] = self._data[i, 1]
+
+        return _X1, _X2
+
+X1, X2 = BayesClassifier(dftrain).split_data()
+print(X1)
+
+
+
+
 
 
 
