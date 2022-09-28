@@ -60,5 +60,5 @@ class LinearRegression:
             _rhat[i] = self.__linear_regression(BM, Xtest)
             residuals[i] = Rtest - _rhat[i]
         
-        return _rhat, residuals
+        return _rhat, np.abs(residuals)
 

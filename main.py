@@ -17,7 +17,7 @@ spotify_data = pd.read_csv(os.path.join("resources", "spotify_data.csv"), delimi
 R1 = spotify_data[:, 0]
 X1 = spotify_data[:, 1:]
 
-# 
+# Removing popularity values less than 80
 R1_2 = R1[R1 > 80]
 X1_2 = X1[R1 > 80]
 
@@ -28,11 +28,11 @@ rhat_12, error_12 = LinearRegression(X1_2, R1_2).LeaveOneOut()
 # Calculating the root-mean-square error
 RMSE = np.sqrt(np.sum(error_1*error_1) / len(R1))
 # Calculating R^2 
-SSRES = np.sum(error_1*error_1)
-SSRTOT = np.sum((R1 - np.mean(R1))**2)
+SSRES = np.sum(np.square(error_1))
+SSRTOT = np.sum(np.square(R1 - np.mean(R1)))
 Rsqared = 1 - (SSRES / SSRTOT)
 
-# Calculate the 
+# Calculate the root-mean-square error for the predictions 
 RMSE2 = np.sqrt(np.sum(error_12*error_12) / len(R1_2))
 # Calculating R^2 
 SSRES2 = np.sum(error_12*error_12)
@@ -74,7 +74,6 @@ ax1[0].legend(loc="lower left")
 ax1[1].hist(error_12, color="red")
 ax1[1].set_xlabel("Error or residuals")
 ax1[1].set_title("Error/residuals for songs with popularity above 80")
-
 
 print("Root-mean-squere error without values below 80 is given as {0:.6f} \nR^2 without values below 80 is given as {1:.6f}".format(RMSE2, Rsqared2))
 
