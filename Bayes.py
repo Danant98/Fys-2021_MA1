@@ -19,7 +19,7 @@ class BayesClassifier:
         """
         self._X1 = X1
         self._X2 = X2
-        self._labels = labels
+        self._labels = np.unique(labels)
         self._alpha = alpha 
 
     def beta_hat(self):

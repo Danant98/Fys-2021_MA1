@@ -103,7 +103,7 @@ def split_data(data:np.ndarray):
     X1 = X[labels < 1]
     X2 = X[labels > 0]
 
-    return X1, X2, np.unique(labels)
+    return X1, X2, labels
 
 # Splitting dataset into 2 
 X12, X22, labels  = split_data(datatrain)
@@ -132,19 +132,59 @@ n = bayes.Normal(t2)
 # Ploting the data from
 #fig2, ax2 = plt.subplots(2, 1, tight_layout=True)
 sns.histplot(datatrain[:, 1], bins=50, stat="probability")
-plt.scatter(t1, g/100, color="green", label="Gamma distribution")
-plt.scatter(t2, n/100, color="red", label="Normal distribution")
+plt.scatter(t1, g/100, color="green", label="Scaled Gamma distribution")
+plt.scatter(t2, n/100, color="red", label="Scaled Normal distribution")
 plt.xlabel("x")
 plt.title("Plot of probability distributions")
 plt.legend()
 
+predict = bayes.PredictedY(testX)
 
-print(len(bayes.PredictedY(testX)))
-print(len(testX))
-
-
+P_ytrain = bayes.PredictedY(datatrain[:, 1])
 
 
+def confusion_matrix(y:np.ndarray, y_predicted:np.ndarray):
+    """
+    Function for calculating the confusion matrix
+    
+    Input: 
+        y: np.ndarray, true values of y
+        y_predicted: np.ndarray, the predicted values for y using a model
+    Output:
+        np.ndarray, confusion matrix consisting of True Positive, True Negative, False Positive, False Negative
+    """
+    TP = 0
+    TN = 0
+    FP = 0
+    FN = 0
+    for i in range(len(y_predicted)):
+        if y[i] == 1 and y_predicted[i] == 1:
+            TP += 1
+        elif y[i] == 0 and y_predicted[i] == 0:
+            TN += 1
+        elif y[i] == 1 and y_predicted[i] == 0:
+            FP += 1
+        elif y[i] == 0 and y_predicted[i] == 1:
+            FN += 1
+    
+    return np.array([[TP, FN], 
+                    [FP, TN]])
+
+
+conf_matrix = confusion_matrix(labels, P_ytrain)
+
+TP, FN, FP, TN = conf_matrix[0, 0], conf_matrix[0, 1], conf_matrix[1, 0], conf_matrix[1, 1]
+
+accuracy = (TP + TN) / (TP + FN + FP + TN)
+precision = TP / (TP + FP)
+recall = TP / (TP + FN)
+
+#print("Accuracy of classifier is {0:.5f}".format(accuracy))
+#print("Precision of classifier is {0:.5f}".format(precision))
+#print("Recall of classifier is {0:.5f}".format(recall))
+
+
+print(get_msg_for_labels(predict))
 
 
 if __name__ == '__main__':
