@@ -5,7 +5,7 @@ __author__ = 'Daniel Elisabethsønn Antonsen, UiT Artic university'
 
 # Import libraries and modules
 import numpy as np
-from math import gamma, pow
+from math import gamma
 
 class BayesClassifier:
     
@@ -73,8 +73,8 @@ class BayesClassifier:
 
         Output:
         """
-        PC0 = len(self._X1) / len(self._labels)
-        PC1 = len(self._X2) / len(self._labels)
+        PC0 = len(self._X1) / (len(self._X1) + len(self._X2))
+        PC1 = len(self._X2) / (len(self._X1) + len(self._X2))
         return PC0, PC1
 
 

@@ -45,7 +45,7 @@ Rsqared2 = 1 - (SSRES2 / SSRTOT2)
 
 
 # Printing the value for RMSE and R^2
-#print("Root-mean-squere error is given as {0:.6f} \nR^2 is given as {1:.6f}".format(RMSE, Rsqared))
+print("Root-mean-squere error is given as {0:.6f} \nR^2 is given as {1:.6f}".format(RMSE, Rsqared))
 
 # Array with index numbers for all songs in dataset
 indexes = np.arange(0, np.shape(R1)[0], 1)
@@ -79,7 +79,8 @@ sns.histplot(error_12, ax=ax1[1], color="red")
 ax1[1].set_xlabel("Error or residuals")
 ax1[1].set_title("Error/residuals for songs with popularity above 80")
 
-#print("Root-mean-squere error without values below 80 is given as {0:.6f} \nR^2 without values below 80 is given as {1:.6f}".format(RMSE2, Rsqared2))
+print("Root-mean-squere error without values below 80 is given as {0:.6f} \nR^2 without values below 80 is given as {1:.6f}".format(RMSE2, Rsqared2))
+plt.show()
 
 ### Problem 2
 
@@ -118,8 +119,8 @@ sigma_2 = bayes.variance()
 
 # Calculating the prior probabilities for C0 and C1
 PC0, PC1 = bayes.prior_prob()
-#print("P(C0) = " + str(PC0))
-#print("P(C1) = " + str(PC1))
+print("P(C0) = " + str(PC0))
+print("P(C1) = " + str(PC1))
 
 # Defining arrays containg values from 0 to 1 with lenght of X1 and X2 
 t1 = np.linspace(0, 1, len(X12))
@@ -139,7 +140,6 @@ plt.title("Plot of probability distributions")
 plt.legend()
 
 predict = bayes.PredictedY(testX)
-
 P_ytrain = bayes.PredictedY(datatrain[:, 1])
 
 
@@ -188,5 +188,5 @@ print("Decoded message is: " + get_msg_for_labels(predict))
 
 
 if __name__ == '__main__':
-    #plt.show()
-    pass
+    plt.show()
+    
