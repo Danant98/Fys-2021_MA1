@@ -80,10 +80,12 @@ class BayesClassifier:
 
     def PredictedY(self, testX:np.ndarray):
         """
-        
+        Method for calculating the predicted y values looping over all inputed values
+
+        Input: np
         """
         predictions = np.array([self._prediction(x) for x in testX])
-        return predictions
+        return np.array([int(i) for i in predictions])
 
     def _prediction(self, testx:float):
         """
@@ -94,7 +96,7 @@ class BayesClassifier:
         """
         # Calculating
         posterior = np.zeros(len(self._labels))
-        for num in range(0, len(self._labels)-1):
+        for num in range(0, len(self._labels)):
             if int(self._labels[num]) == 0:
                 posterior[num] = np.sum(np.log(self.Gamma(testx))) + np.log(self.prior_prob()[0])
             elif int(self._labels[num]) == 1:

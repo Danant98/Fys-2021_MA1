@@ -179,12 +179,12 @@ accuracy = (TP + TN) / (TP + FN + FP + TN)
 precision = TP / (TP + FP)
 recall = TP / (TP + FN)
 
-#print("Accuracy of classifier is {0:.5f}".format(accuracy))
-#print("Precision of classifier is {0:.5f}".format(precision))
-#print("Recall of classifier is {0:.5f}".format(recall))
+print("Accuracy of classifier is {0:.5f}%".format(accuracy*100))
+print("Precision of classifier is {0:.5f}".format(precision))
+print("Recall of classifier is {0:.5f}".format(recall))
 
 
-print(get_msg_for_labels(predict))
+print("Decoded message is: " + get_msg_for_labels(predict))
 
 
 if __name__ == '__main__':
