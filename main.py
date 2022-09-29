@@ -12,6 +12,7 @@ import os
 import pandas as pd
 from LR import LinearRegression
 from Bayes import BayesClassifier
+from assignment1_util import get_msg_for_labels
 
 """
 ### Problem 1
@@ -84,6 +85,7 @@ ax1[1].set_title("Error/residuals for songs with popularity above 80")
 
 # Opening data for problem 2
 datatrain = np.genfromtxt(os.path.join("resources", "optdigits-1d-train.csv"))
+testX = np.genfromtxt(os.path.join("resources", "optdigits-1d-test.csv"))
 
 def split_data(data:np.ndarray):
     """
@@ -101,7 +103,7 @@ def split_data(data:np.ndarray):
     X1 = X[labels < 1]
     X2 = X[labels > 0]
 
-    return X1, X2, labels
+    return X1, X2, np.unique(labels)
 
 # Splitting dataset into 2 
 X12, X22, labels  = split_data(datatrain)
@@ -115,15 +117,15 @@ mu = bayes.mean()
 sigma_2 = bayes.variance()
 
 # Calculating the prior probabilities for C0 and C1
-PC0, PC1 = bayes.prior_possibilities()
+PC0, PC1 = bayes.prior_prob()
 #print("P(C0) = " + str(PC0))
 #print("P(C1) = " + str(PC1))
 
-# Defining 
+# Defining arrays containg values from 0 to 1 with lenght of X1 and X2 
 t1 = np.linspace(0, 1, len(X12))
 t2 = np.linspace(0, 1, len(X22))
 
-# Calling normal and gamma distribution functions
+# Normal and gamma distribution functions
 g = bayes.Gamma(t1) 
 n = bayes.Normal(t2)
 
@@ -135,6 +137,12 @@ plt.scatter(t2, n/100, color="red", label="Normal distribution")
 plt.xlabel("x")
 plt.title("Plot of probability distributions")
 plt.legend()
+
+
+print(len(bayes.PredictedY(testX)))
+print(len(testX))
+
+
 
 
 
