@@ -14,7 +14,7 @@ from LR import LinearRegression
 from Bayes import BayesClassifier
 from assignment1_util import get_msg_for_labels
 
-"""
+
 ### Problem 1
 # Opening data files and transforming to numpy array
 spotify_data = pd.read_csv(os.path.join("resources", "spotify_data.csv"), delimiter=",").to_numpy()
@@ -80,7 +80,7 @@ ax1[1].set_xlabel("Error or residuals")
 ax1[1].set_title("Error/residuals for songs with popularity above 80")
 
 #print("Root-mean-squere error without values below 80 is given as {0:.6f} \nR^2 without values below 80 is given as {1:.6f}".format(RMSE2, Rsqared2))
-"""
+
 ### Problem 2
 
 # Opening data for problem 2
