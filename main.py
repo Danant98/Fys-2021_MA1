@@ -186,6 +186,7 @@ print("Recall of classifier is {0:.5f}".format(recall))
 
 print("Decoded message is: " + get_msg_for_labels(predict))
 
+print(conf_matrix)
 
 if __name__ == '__main__':
     plt.show()
